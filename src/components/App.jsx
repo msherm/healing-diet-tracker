@@ -8,12 +8,11 @@ class App extends React.Component {
   }
 
   render() {
-    console.log("Diet: ", this.props.diets);
     return (
       <div className="container">
       	<h1>Healing Diet Tracker</h1>
         <Diets diets={ this.props.diets }/>
-        <DietBuilder/>
+        <DietBuilder dietBuilder={ this.props.dietBuilder } addCondition={ this.props.addCondition }/>
       </div>
     );
   }

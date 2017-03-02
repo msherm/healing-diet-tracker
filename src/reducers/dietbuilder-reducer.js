@@ -1,21 +1,24 @@
-import { ADD_DIET } from '../actions/action-types';
+import { ADD_CONDITION } from '../actions/action-types';
 
 const initialState = {
-  builder: {
-    name: "",
-    conditions: [],
-    preDietCleanse: false,
-    routine: [],
-    permitted: {
-      always: [],
-      sometimes: [],
-      never: []
-    },
-    duration: { minimum: 0, maximum: 0 }
-  }
+  name: '',
+  conditions: [],
+  preDietCleanse: false,
+  routine: [],
+  permitted: {
+    always: [],
+    sometimes: [],
+    never: []
+  },
+  duration: { minimum: 0, maximum: 0 }
 };
 
-const dietBuilderReducer = function(state = initialState, action) {
+const dietBuilderReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ADD_CONDITION:
+      return Object.assign({}, state, { conditions: [...state.conditions, action.condition] });
+  }
+
 	return state;
 }
 
