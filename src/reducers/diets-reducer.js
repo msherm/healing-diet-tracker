@@ -1,4 +1,4 @@
-import { ADD_DIET } from '../actions/action-types';
+import { RETRIEVE_DIET } from '../actions/action-types';
 
 const initialState = {
   diets: [

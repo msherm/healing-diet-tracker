@@ -8,19 +8,24 @@ import { addVendingMachine, removeVendingMachine, addRow, removeRow, addColumn, 
 class AppContainer extends React.Component {
   render() {
     return (
-      <App/>
+      <App diets={ this.props.diets }
+           dietBuilder={ this.props.dietBuilder }/>
     );
   }
 }
 
 const mapStateToProps = function(store) {
   return {
-    diets: store.dietsState
+    diets: store.dietsState.diets,
+    dietBuilder: store.dietBuilderState
   };
 }
 
 const mapDispatchToProps = function(dispatch) {
   return {
+    // handleRetrieveDiets: () => {
+    //   dispatch(retrieveDiets());
+    // }
   };
 }
 
