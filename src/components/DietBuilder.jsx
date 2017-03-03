@@ -8,7 +8,7 @@ class DietBuilder extends React.Component {
 		this.addPermittedFoodDetail = this.addPermittedFoodDetail.bind(this);
 		this.addPermittedActivityDetail = this.addPermittedActivityDetail.bind(this);
 		this.updateDuration = this.updateDuration.bind(this);
-		this.addDiet = this.addDiet(this);
+		this.addDiet = this.addDiet.bind(this);
 	}
 
 	addCondition() {
