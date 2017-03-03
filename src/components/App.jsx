@@ -14,7 +14,9 @@ class App extends React.Component {
         <Diets diets={ this.props.diets }/>
         <DietBuilder dietBuilder={ this.props.dietBuilder }
                      addCondition={ this.props.addCondition }
-                     addPermittedDetail={ this.props.addPermittedDetail }/>
+                     addPermittedDetail={ this.props.addPermittedDetail }
+                     updateDuration={ this.props.updateDuration }
+                     addDiet={ this.props.addDiet }/>
       </div>
     );
   }

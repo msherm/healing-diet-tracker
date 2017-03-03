@@ -7,6 +7,8 @@ class DietBuilder extends React.Component {
 		this.addCondition = this.addCondition.bind(this);
 		this.addPermittedFoodDetail = this.addPermittedFoodDetail.bind(this);
 		this.addPermittedActivityDetail = this.addPermittedActivityDetail.bind(this);
+		this.updateDuration = this.updateDuration.bind(this);
+		this.addDiet = this.addDiet(this);
 	}
 
 	addCondition() {
@@ -28,6 +30,16 @@ class DietBuilder extends React.Component {
 			this.refs['permitted-activity-detail'].value = '';
 			this.refs['permitted-activity-description'].value = '';
 		}
+	}
+
+	updateDuration() {
+		if (this.refs['duration-minimum'].value.length || this.refs['duration-maximum'].value.length) {
+			this.props.updateDuration(this.refs['duration-minimum'].value, this.refs['duration-maximum'].value);
+		}
+	}
+
+	addDiet() {
+		this.props.addDiet(this.props.dietBuilder.name, this.props.dietBuilder.conditions, this.props.dietBuilder.routine, this.props.dietBuilder.permitted, this.props.dietBuilder.duration);
 	}
 
 	render() {
@@ -177,6 +189,11 @@ class DietBuilder extends React.Component {
 						</li>
 					</ul>
 				</div>
+				<div className="duration-adder">
+					<input ref="duration-minimum" placeholder="Minimum (e.g. 3 days, 2 weeks, 1 month)" onChange={ this.updateDuration }/>
+					<input ref="duration-maximum" placeholder="Maximum (e.g. 4 months, Indefinite)" onChange={ this.updateDuration }/>
+				</div>
+				<button onClick={ this.addDiet }>Add Diet</button>
 			</div>
 		);
 	}

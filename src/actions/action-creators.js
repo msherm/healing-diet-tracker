@@ -18,8 +18,21 @@ export const addPermittedDetail = (frequency, category, detail, description) => 
 	}
 }
 
-export const addDiet = (name, conditions, preDietCleanse, routine, permitted, duration) => {
+export const updateDuration = (minimum, maximum) => {
 	return {
-		type: types.ADD_DIET
+		type: types.UPDATE_DURATION,
+		minimum,
+		maximum
+	}
+}
+
+export const addDiet = (name, conditions, routine, permitted, duration) => {
+	return {
+		type: types.ADD_DIET,
+		name,
+		conditions,
+		routine,
+		permitted,
+		duration
 	}
 }

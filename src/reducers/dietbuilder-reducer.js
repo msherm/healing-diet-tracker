@@ -1,10 +1,10 @@
-import { ADD_CONDITION, ADD_PERMITTED_DETAIL } from '../actions/action-types';
+import { ADD_CONDITION, ADD_PERMITTED_DETAIL, UPDATE_DURATION, ADD_DIET } from '../actions/action-types';
 
 const initialState = {
   name: '',
   conditions: [],
-  preDietCleanse: false,
   routine: [],
+  duration: { minimum: null, maximum: null },
   permitted: {
     always: {
       food: [
@@ -68,8 +68,7 @@ const initialState = {
         }
       ]
     }
-  },
-  duration: { minimum: 0, maximum: 0 }
+  }
 };
 
 //TODO: separate permitted into separate reducer to eliminate need for deepClone
@@ -95,7 +94,9 @@ const dietBuilderReducer = (state = initialState, action) => {
       const permitted = deepClone(state.permitted);
       const permittedList = state.permitted[action.frequency][action.category].slice();
       permitted[action.frequency][action.category].push({ detail: action.detail, description: action.description} );
-      return Object.assign({}, state, { conditions: [...state.conditions, action.condition] });
+      return Object.assign({}, state, { permitted: permitted });
+    case UPDATE_DURATION:
+      return Object.assign({}, state, { duration: { minimum: action.minimum, maximum: action.maximum } });
   }
 
 	return state;
