@@ -4,11 +4,16 @@ class DietBuilder extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.updateDietName = this.updateDietName.bind(this);
 		this.addCondition = this.addCondition.bind(this);
 		this.addPermittedFoodDetail = this.addPermittedFoodDetail.bind(this);
 		this.addPermittedActivityDetail = this.addPermittedActivityDetail.bind(this);
 		this.updateDuration = this.updateDuration.bind(this);
 		this.addDiet = this.addDiet.bind(this);
+	}
+
+	updateDietName() {
+		this.props.updateDietName(this.refs['diet-name'].value);
 	}
 
 	addCondition() {
@@ -39,7 +44,11 @@ class DietBuilder extends React.Component {
 	}
 
 	addDiet() {
+		//TODO: clear/reset adder refs (permitted detail, category, description) 
 		this.props.addDiet(this.props.dietBuilder.name, this.props.dietBuilder.conditions, this.props.dietBuilder.routine, this.props.dietBuilder.permitted, this.props.dietBuilder.duration);
+		this.refs['diet-name'].value = '';
+		this.refs['duration-minimum'].value = '';
+		this.refs['duration-maximum'].value = '';
 	}
 
 	render() {
@@ -104,7 +113,7 @@ class DietBuilder extends React.Component {
 		return (
 			<div className="diet-builder">
 				<h3>Diet Builder</h3>
-				<input placeholder="Diet Name"/>
+				<input ref="diet-name" placeholder="Diet Name" onChange={ this.updateDietName }/>
 				<div className="condition-adder">
 					<h4>For Treating</h4>
 					<input ref="condition" placeholder="Condition"/>

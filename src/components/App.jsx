@@ -13,6 +13,7 @@ class App extends React.Component {
       	<h1>Healing Diet Tracker</h1>
         <Diets diets={ this.props.diets }/>
         <DietBuilder dietBuilder={ this.props.dietBuilder }
+                     updateDietName={ this.props.updateDietName }
                      addCondition={ this.props.addCondition }
                      addPermittedDetail={ this.props.addPermittedDetail }
                      updateDuration={ this.props.updateDuration }

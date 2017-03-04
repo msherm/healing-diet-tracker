@@ -7,7 +7,7 @@ const Diets = (props) => {
         <h2>{ diet.name }</h2>
         <ul className="diet-details">
           <li className="conditions"><span>Conditions:</span><span>{ diet.conditions }</span></li>
-          <li className="duration"><span>Duration</span><span>Minimum: { diet.duration.minimum ? diet.duration.minimum : 'Not specified' }, Maximum: { diet.duration.maximum ? diet.duration.maximum : 'Not specified' }</span></li>
+          <li className="duration"><span>Duration</span><span>Minimum: { diet.duration ? diet.duration.minimum : 'Not specified' }, Maximum: { diet.duration ? diet.duration.maximum : 'Not specified' }</span></li>
           <li className="permitted-lists">
             permitted lists
           </li>

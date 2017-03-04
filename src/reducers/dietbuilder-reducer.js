@@ -1,4 +1,4 @@
-import { ADD_CONDITION, ADD_PERMITTED_DETAIL, UPDATE_DURATION, ADD_DIET } from '../actions/action-types';
+import { UPDATE_DIET_NAME, ADD_CONDITION, ADD_PERMITTED_DETAIL, UPDATE_DURATION, ADD_DIET } from '../actions/action-types';
 
 const initialState = {
   name: '',
@@ -68,7 +68,8 @@ const initialState = {
         }
       ]
     }
-  }
+  },
+  diets: []
 };
 
 //TODO: separate permitted into separate reducer to eliminate need for deepClone
@@ -88,6 +89,8 @@ const deepClone = (obj) => {
 
 const dietBuilderReducer = (state = initialState, action) => {
   switch (action.type) {
+    case UPDATE_DIET_NAME:
+      return Object.assign({}, state, { name: action.name });
     case ADD_CONDITION:
       return Object.assign({}, state, { conditions: [...state.conditions, action.condition] });
     case ADD_PERMITTED_DETAIL:
@@ -97,6 +100,8 @@ const dietBuilderReducer = (state = initialState, action) => {
       return Object.assign({}, state, { permitted: permitted });
     case UPDATE_DURATION:
       return Object.assign({}, state, { duration: { minimum: action.minimum, maximum: action.maximum } });
+    case ADD_DIET:
+      return Object.assign({}, initialState);
   }
 
 	return state;

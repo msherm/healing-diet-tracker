@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import App from '../components/App.jsx';
 import store from '../store';
 
-import { addCondition, addPermittedDetail, updateDuration, addDiet } from '../actions/action-creators.js';
+import { updateDietName, addCondition, addPermittedDetail, updateDuration, addDiet } from '../actions/action-creators.js';
 
 class AppContainer extends React.Component {
   render() {
     return (
       <App diets={ this.props.diets }
            dietBuilder={ this.props.dietBuilder }
+           updateDietName={ this.props.handleUpdateDietName }
            addCondition={ this.props.handleAddCondition }
            addPermittedDetail={ this.props.handleAddPermittedDetail}
            addDiet={ this.props.handleAddDiet }
@@ -28,6 +29,9 @@ const mapStateToProps = function(store) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
+    handleUpdateDietName: (name) => {
+      dispatch(updateDietName(name));
+    },
     handleAddCondition: (condition) => {
       dispatch(addCondition(condition));
     },
@@ -37,8 +41,8 @@ const mapDispatchToProps = function(dispatch) {
     handleUpdateDuration: (minimum, maximum) => {
       dispatch(updateDuration(minimum, maximum));
     },
-    handleAddDiet: () => {
-      dispatch(addDiet());
+    handleAddDiet: (name, conditions, routine, permitted, duration) => {
+      dispatch(addDiet(name, conditions, routine, permitted, duration));
     }
   };
 }

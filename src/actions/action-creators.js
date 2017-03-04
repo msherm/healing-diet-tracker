@@ -1,6 +1,13 @@
 import * as types from './action-types';
 
 //Builder
+export const updateDietName = (name) => {
+	return {
+		type: types.UPDATE_DIET_NAME,
+		name
+	}
+}
+
 export const addCondition = (condition) => {
 	return {
 		type: types.ADD_CONDITION,
