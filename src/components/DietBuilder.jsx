@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import PermittedDetailAdder from './PermittedDetailAdder.jsx';
 import PermittedLists from './PermittedLists.jsx';
 
 class DietBuilder extends React.Component {
@@ -7,6 +8,7 @@ class DietBuilder extends React.Component {
 
 		this.updateDietName = this.updateDietName.bind(this);
 		this.addCondition = this.addCondition.bind(this);
+		this.addPermittedDetail = this.addPermittedDetail.bind(this);
 		this.addPermittedFoodDetail = this.addPermittedFoodDetail.bind(this);
 		this.addPermittedActivityDetail = this.addPermittedActivityDetail.bind(this);
 		this.updateDuration = this.updateDuration.bind(this);
@@ -20,6 +22,14 @@ class DietBuilder extends React.Component {
 	addCondition() {
 		this.props.addCondition(this.refs.condition.value);
 		this.refs.condition.value = '';
+	}
+
+	addPermittedDetail(category) {
+		if (this.refs['permitted-' + category + '-frequency'].value.length && this.refs['permitted-' + category + '-detail'].value.length) {
+			this.props.addPermittedDetail(this.refs['permitted-' + category + '-frequency'].value, category, this.refs['permitted-' + category + '-detail'].value, this.refs['permitted-' + category + '-description'].value);
+			this.refs['permitted-' + category + '-detail'].value = '';
+			this.refs['permitted-' + category + '-description'].value = '';
+		}
 	}
 
 	addPermittedFoodDetail() {
