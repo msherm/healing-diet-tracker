@@ -8,15 +8,77 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: bold;
 }
 
-.container {
-	padding: 20px;
+h1 {
+	font-size: 2.5em;
 }
 
-.slot {
-	border: 2px solid #fff;
+.container {
+	display: block;
+	width: 92%;
 	padding: 10px;
+	margin: 10px auto;
+}
 
-	&.selected {
-		border: 2px solid #54c;
+.diets {
+	> li {
+		padding: 8px;
+		margin: 10px 0;
+		border: 1px solid #ebebeb;
+
+		h2 {
+			font-size: 2.0em;
+			text-decoration: underline;
+		}
+
+
+	}
+}
+
+ul.diet-details {
+	> li {
+		> em {
+			display: block;
+			font-size: 1.45em;
+			font-weight: bold;
+			margin: 10px 0 2px;
+		}
+	}
+}
+
+ul.permitted-detail-lists {
+	display: flex;
+
+	> li {
+		width: 31.3%;
+		padding: 10px;
+		margin: 0 1%;
+
+		&:hover {
+			background-color: #eee;
+		}
+
+		> h5 {
+			font-size: 1.20em;
+			font-weight: bold;
+			color: #555;
+			margin-bottom: 4px;
+			text-decoration: underline;
+		}
+
+		> ul {
+			> li {
+				> strong {
+					display: block;
+					font-size: 1.10em;
+					font-weight: bold;
+					margin-bottom: 2px;
+				}
+				> span {
+					display: block;
+					font-size: 0.90em;
+					margin-bottom: 10px;
+				}
+			}
+		}
 	}
 }

@@ -78,13 +78,13 @@ const deepClone = (obj) => {
       return obj;
     }
 
-    const copy = obj.constructor();
+    const clone = [];
 
     for (let attr in obj) {
-        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+        if (obj.hasOwnProperty(attr)) clone[attr] = deepClone(obj[attr]);
     }
 
-    return copy;
+    return clone;
 }
 
 const dietBuilderReducer = (state = initialState, action) => {
@@ -95,7 +95,6 @@ const dietBuilderReducer = (state = initialState, action) => {
       return Object.assign({}, state, { conditions: [...state.conditions, action.condition] });
     case ADD_PERMITTED_DETAIL:
       const permitted = deepClone(state.permitted);
-      const permittedList = state.permitted[action.frequency][action.category].slice();
       permitted[action.frequency][action.category].push({ detail: action.detail, description: action.description} );
       return Object.assign({}, state, { permitted: permitted });
     case UPDATE_DURATION:
