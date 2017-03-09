@@ -68,7 +68,7 @@ class DietBuilder extends React.Component {
 			return null;
 		} else {
 			const conditions = this.props.dietBuilder.conditions.length ? this.props.dietBuilder.conditions.map((condition, i) => {return <li key={ i }>{ condition }</li>}) : <li className="initial">No conditions listed</li>;
-		
+			
 			return (
 				<div className="diet-builder">
 					<h3>Diet Builder</h3>
@@ -84,37 +84,41 @@ class DietBuilder extends React.Component {
 					</div>
 					<div className="permitted-detail-adder">
 						<h4>Foods Breakdown</h4>
-						<div className="detail-adder">
-							<label>Food Name</label>
-							<input ref="permitted-food-detail" placeholder="ex. oranges, pizza"/>
-							<label>Permitted Frequency</label>
-							<select ref="permitted-food-frequency">
-								<option value="always">always</option>
-								<option value="sometimes">sometimes</option>
-								<option value="never">never</option>
-							</select>
-							<label>Food Details</label>
-							<textarea ref="permitted-food-description" placeholder="ex. Eat 3 times each day."></textarea>
-							<button onClick={ this.addPermittedFoodDetail }>Add Food</button>
+						<div className={ this.props.dietBuilder.foodBreakdownVisible ? 'breakdown-visible' : 'breakdown-hidden' }>
+							<div className="detail-adder">
+								<label>Food Name</label>
+								<input ref="permitted-food-detail" placeholder="ex. oranges, pizza"/>
+								<label>Permitted Frequency</label>
+								<select ref="permitted-food-frequency">
+									<option value="always">always</option>
+									<option value="sometimes">sometimes</option>
+									<option value="never">never</option>
+								</select>
+								<label>Food Details</label>
+								<textarea ref="permitted-food-description" placeholder="ex. Eat 3 times each day."></textarea>
+								<button onClick={ this.addPermittedFoodDetail }>Add Food</button>
+							</div>
+							<PermittedLists category="food" permitted={ this.props.dietBuilder.permitted }/>
 						</div>
-						<PermittedLists category="food" permitted={ this.props.dietBuilder.permitted }/>
 					</div>
 					<div className="permitted-detail-adder">
 						<h4>Activities Breakdown</h4>
-						<div className="detail-adder">
-							<label>Activity Name</label>
-							<input ref="permitted-activity-detail" placeholder="ex. jogging, swimming"/>
-							<label>Permitted Frequency</label>
-							<select ref="permitted-activity-frequency">
-								<option value="always">always</option>
-								<option value="sometimes">sometimes</option>
-								<option value="never">never</option>
-							</select>
-							<label>Activity details</label>
-							<textarea ref="permitted-activity-description" placeholder="ex. 2 hours per day max."></textarea>
-							<button onClick={ this.addPermittedActivityDetail }>Add Activity</button>
+						<div className={ this.props.dietBuilder.activityBreakdownVisible ? 'breakdown-visible' : 'breakdown-hidden' }>
+							<div className="detail-adder">
+								<label>Activity Name</label>
+								<input ref="permitted-activity-detail" placeholder="ex. jogging, swimming"/>
+								<label>Permitted Frequency</label>
+								<select ref="permitted-activity-frequency">
+									<option value="always">always</option>
+									<option value="sometimes">sometimes</option>
+									<option value="never">never</option>
+								</select>
+								<label>Activity details</label>
+								<textarea ref="permitted-activity-description" placeholder="ex. 2 hours per day max."></textarea>
+								<button onClick={ this.addPermittedActivityDetail }>Add Activity</button>
+							</div>
+							<PermittedLists category="activity" permitted={ this.props.dietBuilder.permitted }/>
 						</div>
-						<PermittedLists category="activity" permitted={ this.props.dietBuilder.permitted }/>
 					</div>
 					<h4>Duration</h4>
 					<div className="duration-adder">

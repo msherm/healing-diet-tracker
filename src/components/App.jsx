@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import Diets from './Diets.jsx';
 import DietBuilder from './DietBuilder.jsx';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);

@@ -17,6 +17,7 @@ body, textarea {
 
 h1,h2,h3,h4,h5,h6 {
   font-weight: bold;
+  margin: 10px 0;
 }
 
 h1 {
@@ -178,4 +179,12 @@ button {
 			background-color: #039;
 		}
 	}
+}
+
+.breakdown-visible {
+	display: block;
+}
+
+.breakdown-hidden {
+	display: none;
 }

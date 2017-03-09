@@ -5,6 +5,8 @@ const initialState = {
   conditions: [],
   routine: [],
   duration: { minimum: null, maximum: null },
+  foodBreakdownVisible: false,
+  activityBreakdownVisible: false,
   permitted: {
     always: {
       food: [
