@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import App from '../components/App.jsx';
 import store from '../store';
 
-import { updateDietName, addCondition, addPermittedDetail, updateDuration, addDiet } from '../actions/action-creators.js';
+import { toggleDietBuilder, updateDietName, addCondition, addPermittedDetail, updateDuration, addDiet } from '../actions/action-creators.js';
 
 class AppContainer extends React.Component {
   render() {
     return (
-      <App diets={ this.props.diets }
+      <App builderVisible={ this.props.app.builderVisible }
+           diets={ this.props.diets }
+           toggleDietBuilder={ this.props.handleToggleDietBuilder }
            dietBuilder={ this.props.dietBuilder }
            updateDietName={ this.props.handleUpdateDietName }
            addCondition={ this.props.handleAddCondition }
@@ -22,6 +24,7 @@ class AppContainer extends React.Component {
 
 const mapStateToProps = function(store) {
   return {
+    app: store.appState,
     diets: store.dietsState.diets,
     dietBuilder: store.dietBuilderState
   };
@@ -29,6 +32,9 @@ const mapStateToProps = function(store) {
 
 const mapDispatchToProps = function(dispatch) {
   return {
+    handleToggleDietBuilder: () => {
+      dispatch(toggleDietBuilder());
+    },
     handleUpdateDietName: (name) => {
       dispatch(updateDietName(name));
     },

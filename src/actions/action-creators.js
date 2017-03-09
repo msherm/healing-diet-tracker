@@ -1,5 +1,12 @@
 import * as types from './action-types';
 
+//App
+export const toggleDietBuilder = () => {
+	return {
+		type: types.TOGGLE_DIET_BUILDER
+	}
+}
+
 //Builder
 export const updateDietName = (name) => {
 	return {

@@ -60,68 +60,74 @@ class DietBuilder extends React.Component {
 		this.refs['diet-name'].value = '';
 		this.refs['duration-minimum'].value = '';
 		this.refs['duration-maximum'].value = '';
+		this.props.toggleDietBuilder();
 	}
 
 	render() {
-		const conditions = this.props.dietBuilder.conditions.length ? this.props.dietBuilder.conditions.map((condition, i) => {return <li key={ i }>{ condition }</li>}) : <li className="initial">Add conditions</li>;
+		if (!this.props.builderVisible) {
+			return null;
+		} else {
+			const conditions = this.props.dietBuilder.conditions.length ? this.props.dietBuilder.conditions.map((condition, i) => {return <li key={ i }>{ condition }</li>}) : <li className="initial">No conditions listed</li>;
 		
-		return (
-			<div className="diet-builder">
-				<h3>Diet Builder</h3>
-				<input ref="diet-name" placeholder="Diet Name" onChange={ this.updateDietName }/>
-				<div className="condition-adder">
-					<h4>For Treating</h4>
-					<input ref="condition" placeholder="Condition"/>
-					<button onClick={ this.addCondition }>Add Condition</button>
-					<ul className="conditions">
-						{ conditions }
-					</ul>
-				</div>
-				<div className="permitted-detail-adder">
-					<h4>Foods Permitted</h4>
-					<div className="detail-adder">
-						<span><input ref="permitted-food-detail" placeholder="Food (e.g. pizza, ice cream, chili)"/></span>
-						<span>
+			return (
+				<div className="diet-builder">
+					<h3>Diet Builder</h3>
+					<h4>Diet Name</h4>
+					<input ref="diet-name" placeholder="ex. Master Cleanse" onChange={ this.updateDietName }/>
+					<div className="condition-adder">
+						<h4>For Treating</h4>
+						<input ref="condition" placeholder="ex. Dry Skin, Inflammation"/>
+						<button onClick={ this.addCondition }>Add Condition</button>
+						<ul className="conditions">
+							{ conditions }
+						</ul>
+					</div>
+					<div className="permitted-detail-adder">
+						<h4>Foods Breakdown</h4>
+						<div className="detail-adder">
+							<label>Food Name</label>
+							<input ref="permitted-food-detail" placeholder="ex. oranges, pizza"/>
+							<label>Permitted Frequency</label>
 							<select ref="permitted-food-frequency">
 								<option value="always">always</option>
 								<option value="sometimes">sometimes</option>
 								<option value="never">never</option>
 							</select>
-							permitted
-						</span>
-						<span>
-							<textarea ref="permitted-food-description" placeholder="important information"></textarea>
-						</span>
-						<button onClick={ this.addPermittedFoodDetail }>Add Food</button>
+							<label>Food Details</label>
+							<textarea ref="permitted-food-description" placeholder="ex. Eat 3 times each day."></textarea>
+							<button onClick={ this.addPermittedFoodDetail }>Add Food</button>
+						</div>
+						<PermittedLists category="food" permitted={ this.props.dietBuilder.permitted }/>
 					</div>
-					<PermittedLists category="food" permitted={ this.props.dietBuilder.permitted }/>
-				</div>
-				<div className="permitted-detail-adder">
-					<h4>Activities Permitted</h4>
-					<div className="detail-adder">
-						<span><input ref="permitted-activity-detail" placeholder="Food (e.g. running, swimming, weight lifting)"/></span>
-						<span>
+					<div className="permitted-detail-adder">
+						<h4>Activities Breakdown</h4>
+						<div className="detail-adder">
+							<label>Activity Name</label>
+							<input ref="permitted-activity-detail" placeholder="ex. jogging, swimming"/>
+							<label>Permitted Frequency</label>
 							<select ref="permitted-activity-frequency">
 								<option value="always">always</option>
 								<option value="sometimes">sometimes</option>
 								<option value="never">never</option>
 							</select>
-							permitted
-						</span>
-						<span>
-							<textarea ref="permitted-activity-description" placeholder="important information"></textarea>
-						</span>
-						<button onClick={ this.addPermittedActivityDetail }>Add Activity</button>
+							<label>Activity details</label>
+							<textarea ref="permitted-activity-description" placeholder="ex. 2 hours per day max."></textarea>
+							<button onClick={ this.addPermittedActivityDetail }>Add Activity</button>
+						</div>
+						<PermittedLists category="activity" permitted={ this.props.dietBuilder.permitted }/>
 					</div>
-					<PermittedLists category="activity" permitted={ this.props.dietBuilder.permitted }/>
+					<h4>Duration</h4>
+					<div className="duration-adder">
+						<label>Minimum</label>
+						<input ref="duration-minimum" placeholder="ex. 4 days" onChange={ this.updateDuration }/>
+						<label>Maximum</label>
+						<input ref="duration-maximum" placeholder="ex. 3 weeks" onChange={ this.updateDuration }/>
+					</div>
+					<button className="add-diet" onClick={ this.addDiet }>Add Diet</button>
 				</div>
-				<div className="duration-adder">
-					<input ref="duration-minimum" placeholder="Minimum (e.g. 3 days, 2 weeks, 1 month)" onChange={ this.updateDuration }/>
-					<input ref="duration-maximum" placeholder="Maximum (e.g. 4 months, Indefinite)" onChange={ this.updateDuration }/>
-				</div>
-				<button onClick={ this.addDiet }>Add Diet</button>
-			</div>
-		);
+			);
+		}
+		
 	}
 }
 

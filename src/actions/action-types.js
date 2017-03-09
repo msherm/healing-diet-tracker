@@ -1,4 +1,7 @@
 //Actions
+//App
+export const TOGGLE_DIET_BUILDER = 'TOGGLE_DIET_BUILDER';
+
 //Diets
 export const RETRIEVE_DIET = 'RETRIEVE_DIET';
 
